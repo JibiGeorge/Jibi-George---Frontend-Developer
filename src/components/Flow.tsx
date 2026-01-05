@@ -1,5 +1,7 @@
 "use client"
 
+import FlowCanvas from "./FlowCanvas"
+
 const Flow = () => {
 
     return (
@@ -15,6 +17,8 @@ const Flow = () => {
                     Export JSON
                 </button>
             </div>
+
+            <FlowCanvas />
         </main>
     )
 }
