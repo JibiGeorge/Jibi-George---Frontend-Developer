@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react";
-import FlowCanvas from "./FlowCanvas"
+import { loadState, saveState } from "@/lib/storage";
 import { HomeSection } from "@/types";
-import { loadState } from "@/lib/storage";
+import { useEffect, useState } from "react";
+import FlowCanvas from "./FlowCanvas";
 
 const Flow = () => {
 
@@ -47,16 +47,26 @@ const Flow = () => {
     return (
         <main className="p-6 space-y-4 w-full h-full">
             <div className="flex gap-2">
-                <button>
+                <button onClick={() => saveState({ sections })} className="px-3 py-1 bg-indigo-600 text-white rounded">
                     Save
                 </button>
-                <button className="px-3 py-1 bg-slate-600 text-white rounded">
+                <button
+                    onClick={() => {
+                        const s = loadState();
+                        if (s) setSections(s.sections);
+                    }}
+                    className="px-3 py-1 bg-slate-600 text-white rounded"
+                >
                     Load
                 </button>
-                <button className="px-3 py-1 bg-emerald-600 text-white rounded">
+                <button
+                    onClick={() => alert(JSON.stringify({ pages: 'static-hierarchy', sections }, null, 2))}
+                    className="px-3 py-1 bg-emerald-600 text-white rounded"
+                >
                     Export JSON
                 </button>
             </div>
+
 
             <FlowCanvas sections={sections} setSections={setSections} />
         </main>
