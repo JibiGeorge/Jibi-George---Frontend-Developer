@@ -150,8 +150,8 @@ export default function FlowCanvas({
                 onEdgesChange={onEdgesChange}
                 nodeTypes={nodeTypes}
                 fitView
-                nodesDraggable={false}
-                panOnDrag={false}
+                nodesDraggable={true}
+                panOnDrag={true}
                 className="w-full h-full"
             >
                 <Background gap={16} />
