@@ -1,6 +1,7 @@
 'use client';
 
 import { Handle, Position } from '@xyflow/react';
+import HomeSections from './HomeSections';
 import { HomeSection } from '@/types';
 
 type Props = {
@@ -39,8 +40,31 @@ export default function PageNode({ id, data }: Props) {
       {/* Body */}
       <div className="p-2 text-xs space-y-2">
         {/* HOME PAGE */}
+        {data.isHome && data.sections && data.onSectionsChange && (
+          <HomeSections
+            sections={data.sections}
+            onChange={data.onSectionsChange}
+          />
+        )}
 
         {/* SUB PAGES */}
+        {!data.isHome && (
+          <div className="space-y-2">
+            <button
+              onClick={() => data.onAddSection?.(id)}
+              className="w-full text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded px-2 py-1"
+            >
+              ➕ Add Section
+            </button>
+
+            <button
+              onClick={() => data.onGeneratePages?.(id)}
+              className="w-full text-xs bg-emerald-600 hover:bg-emerald-700 text-white rounded px-2 py-1"
+            >
+              ⚡ Generate Pages
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Handles */}
