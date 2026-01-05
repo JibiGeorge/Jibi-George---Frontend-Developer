@@ -47,20 +47,44 @@ const Flow = () => {
     return (
         <main className="p-6 space-y-4 w-full h-full">
             <div className="flex gap-2">
-                <button onClick={() => saveState({ sections })} className="px-3 py-1 bg-indigo-600 text-white rounded">
+                {/* SAVE */}
+                <button
+                    onClick={() => {
+                        saveState({ sections });
+                        alert("Flow saved successfully");
+                    }}
+                    className="px-3 py-1 bg-indigo-600 text-white rounded"
+                >
                     Save
                 </button>
+
+                {/* LOAD */}
                 <button
                     onClick={() => {
                         const s = loadState();
-                        if (s) setSections(s.sections);
+                        if (s) {
+                            setSections(s.sections);
+                            alert("Flow loaded");
+                        } else {
+                            alert("No saved flow found");
+                        }
                     }}
                     className="px-3 py-1 bg-slate-600 text-white rounded"
                 >
                     Load
                 </button>
+
+                {/* EXPORT */}
                 <button
-                    onClick={() => alert(JSON.stringify({ pages: 'static-hierarchy', sections }, null, 2))}
+                    onClick={() => {
+                        alert(
+                            JSON.stringify(
+                                { pages: "static-hierarchy", sections },
+                                null,
+                                2
+                            )
+                        );
+                    }}
                     className="px-3 py-1 bg-emerald-600 text-white rounded"
                 >
                     Export JSON
