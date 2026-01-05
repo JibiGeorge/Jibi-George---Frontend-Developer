@@ -38,7 +38,7 @@ export default function PageNode({ id, data }: Props) {
       </div>
 
       {/* Body */}
-      <div className="p-2 text-xs space-y-2">
+      <div className="p-2 text-xs space-y-2 nodrag">
         {/* HOME PAGE */}
         {data.isHome && data.sections && data.onSectionsChange && (
           <HomeSections
