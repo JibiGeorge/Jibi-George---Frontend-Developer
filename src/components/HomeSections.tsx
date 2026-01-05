@@ -1,8 +1,13 @@
 'use client';
 
 import { DndContext, closestCenter } from '@dnd-kit/core';
-import { arrayMove } from '@dnd-kit/sortable';
+import {
+    arrayMove,
+    SortableContext,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import { HomeSection } from '@/types';
+import SortableSection from './SortableSection';
 
 export default function HomeSections({
     sections,
@@ -23,6 +28,16 @@ export default function HomeSections({
                 }
             }}
         >
+            <SortableContext
+                items={sections.map((s) => s.id)}
+                strategy={verticalListSortingStrategy}
+            >
+                <div className="space-y-2">
+                    {sections.map((section) => (
+                        <SortableSection key={section.id} section={section} />
+                    ))}
+                </div>
+            </SortableContext>
         </DndContext>
     );
 }
